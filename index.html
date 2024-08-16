@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.slider {
+    position: relative;
+    max-width: 75%;
+    margin: 50vh auto;
+    overflow: hidden;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    box-shadow: 0px 0px 40px  rgba(128, 0, 128 , 0.8);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border: none;
+    padding:2rem 2.8rem;
+    cursor: pointer;
+    height: 100%;
+    transition: 0.7s;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slides">
+            <img src="sports-car-mountains-retrowave-synthwave-2k-wallpaper-uhdpaper.com-233@0@k.jpg" class="slide" alt="Image 1">
+            <img src="ocean-car-floating-full-moon-scenery-digital-art-2k-wallpaper-uhdpaper.com-664@0@j.jpg" class="slide" alt="Image 2">
+            <img src="red-dead-redemption-sunset-minimalist-outrun-digital-art-game-2k-wallpaper-uhdpaper.com-830@3@a.jpg" class="slide" alt="Image 3">
+        </div>
+        <button class="prev" onclick="moveSlides(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlides(1)">&#10095;</button>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index) {
+    if (index >= slides.length) slideIndex = 0;
+    if (index < 0) slideIndex = slides.length - 1;
+
+    slides.forEach((slide, i) => {
+        slide.style.display = "none";
+    });
+    slides[slideIndex].style.display = "block";
+}
+
+function moveSlides(n) {
+    showSlide(slideIndex += n);
+}
+
+function autoSlide() {
+    moveSlides(1);
+    setTimeout(autoSlide, 4000);
+}
+
+showSlide(slideIndex);
+autoSlide();
+
+    </script>
+</body>
+</html>
